@@ -86,7 +86,7 @@ class ControllerPaymentPaylane extends Controller
             else
                 $this->model_checkout_order->update($order_id, 1, "PayLane transaction ID: " . $request['id_sale']);
 
-            $this->redirect($this->url->link('checkout/success', 'token=' . $this->session->data['token'], 'SSL'));
+            $this->redirect($this->url->link('checkout/success', '', 'SSL'));
         }
         else
         {
@@ -98,7 +98,7 @@ class ControllerPaymentPaylane extends Controller
             $this->data['order_id'] = $order_id;
             $this->data['error_code'] = $request['error_code'];
             $this->data['error_text'] = $request['error_text'];
-            $this->data['back_link'] = $this->url->link('checkout/checkout', 'token=' . $this->session->data['token'], 'SSL');
+            $this->data['back_link'] = $this->url->link('checkout/checkout', '', 'SSL');
 
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paylane-error.tpl'))
             {
