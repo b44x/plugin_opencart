@@ -31,7 +31,7 @@ class ControllerPaymentPaylane extends Controller
             $this->data['language']        = $this->config->get('paylane_interface_lang');
 
             $this->data['merchant_transaction_id'] = str_pad((int)($this->session->data['order_id']), 4, "0", STR_PAD_LEFT);
-            $this->data['back_url']                = $this->url->link('payment/paylane/callback', '', 'SSL');
+            $this->data['back_url']                = $this->url->link('payment/paylane/callback', '', true);
             $this->data['amount']                  = (float)$order_info['total'];
             $this->data['transaction_type']        = "S";
             $this->data['currency_code']           = $order_info['currency_code'];
@@ -86,7 +86,7 @@ class ControllerPaymentPaylane extends Controller
             else
                 $this->model_checkout_order->update($order_id, 1, "PayLane transaction ID: " . $request['id_sale']);
 
-            $this->redirect($this->url->link('checkout/success', '', 'SSL'));
+            $this->redirect($this->url->link('checkout/success', '', true));
         }
         else
         {
@@ -98,7 +98,7 @@ class ControllerPaymentPaylane extends Controller
             $this->data['order_id'] = $order_id;
             $this->data['error_code'] = $request['error_code'];
             $this->data['error_text'] = $request['error_text'];
-            $this->data['back_link'] = $this->url->link('checkout/checkout', '', 'SSL');
+            $this->data['back_link'] = $this->url->link('checkout/checkout', '', true);
 
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/paylane-error.tpl'))
             {

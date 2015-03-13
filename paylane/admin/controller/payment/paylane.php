@@ -14,7 +14,7 @@ class ControllerPaymentPaylane extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$this->redirect($this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'));
+			$this->redirect($this->url->link('extension/payment', '', true));
 		}
 
 		$this->data['heading_title'] = $this->language->get('heading_title');
@@ -54,25 +54,25 @@ class ControllerPaymentPaylane extends Controller {
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),      		
+			'href'      => $this->url->link('common/home', '', true),      		
       		'separator' => false
    		);
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('text_payment'),
-			'href'      => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('extension/payment', '', true),
       		'separator' => ' :: '
    		);
 
    		$this->data['breadcrumbs'][] = array(
        		'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('payment/paylane', 'token=' . $this->session->data['token'], 'SSL'),
+			'href'      => $this->url->link('payment/paylane', '', true),
       		'separator' => ' :: '
    		);
 
-		$this->data['action'] = $this->url->link('payment/paylane', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = $this->url->link('payment/paylane', '', true);
 
-		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['cancel'] = $this->url->link('extension/payment', '', true);
 
 		if (isset($this->request->post['paylane_merchant_id'])) {
 			$this->data['paylane_merchant_id'] = $this->request->post['paylane_merchant_id'];
