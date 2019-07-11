@@ -3,8 +3,8 @@ class ControllerExtensionPaymentPaylane extends Controller
 {
     const PAYLANE_SECURE_FORM_URL = 'https://secure.paylane.com/order/cart.html';
 
-    protected $data = [];
-    protected $template;
+    protected $_data = [];
+    protected $_template;
 
     public function index()
     {
@@ -25,7 +25,7 @@ class ControllerExtensionPaymentPaylane extends Controller
             }
 
             $this->data['transaction_description'] = substr($this->data['transaction_description'], 0, -2);
-            $total = $this->currency->format($order_info['total'] - $this->cart->getSubTotal(), $order_info['currency_code'], false, false);
+            $total                                 = $this->currency->format($order_info['total'] - $this->cart->getSubTotal(), $order_info['currency_code'], false, false);
 
             $this->data['merchant_id'] = $this->config->get('paylane_merchant_id');
             $this->data['language']    = strtolower($this->config->get('paylane_interface_lang'));
@@ -54,12 +54,12 @@ class ControllerExtensionPaymentPaylane extends Controller
             } else {
                 $this->template = 'extension/payment/paylane.tpl';
             }
-            
+
             return $this->render();
         }
     }
 
-    protected function render()
+    protected function _render()
     {
         return $this->load->view($this->template, $this->data);
     }
@@ -68,8 +68,6 @@ class ControllerExtensionPaymentPaylane extends Controller
     {
         $request = $this->request->{strtolower($this->config->get('paylane_redirect_type'))};
 
-        ini_set('display_errors', 'on');
-        error_reporting(E_ALL);
         if (isset($request['description'])) {
             $order_id = (int)$request['description'];
         } else {
@@ -153,7 +151,7 @@ class ControllerExtensionPaymentPaylane extends Controller
         return false;
     }
 
-    protected function toAmount($amount)
+    protected function _toAmount($amount)
     {
         return number_Format($amount, 2, '.', '');
     }
