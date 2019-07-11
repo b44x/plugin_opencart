@@ -151,7 +151,7 @@ class ControllerExtensionPaymentPaylane extends Controller
         return false;
     }
 
-    protected function _toAmount($amount)
+    protected function toAmount($amount)
     {
         return number_Format($amount, 2, '.', '');
     }
