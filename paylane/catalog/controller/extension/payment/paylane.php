@@ -3,8 +3,8 @@ class ControllerExtensionPaymentPaylane extends Controller
 {
     const PAYLANE_SECURE_FORM_URL = 'https://secure.paylane.com/order/cart.html';
 
-    protected $_data = [];
-    protected $_template;
+    protected $data = [];
+    protected $template;
 
     public function index()
     {
@@ -59,7 +59,7 @@ class ControllerExtensionPaymentPaylane extends Controller
         }
     }
 
-    protected function _render()
+    protected function render()
     {
         return $this->load->view($this->template, $this->data);
     }
