@@ -25,7 +25,7 @@ class ControllerExtensionPaymentPaylane extends Controller
             }
 
             $this->data['transaction_description'] = substr($this->data['transaction_description'], 0, -2);
-            $total = $this->currency->format($order_info['total'] - $this->cart->getSubTotal(), $order_info['currency_code'], false, false);
+            $total                                 = $this->currency->format($order_info['total'] - $this->cart->getSubTotal(), $order_info['currency_code'], false, false);
 
             $this->data['merchant_id'] = $this->config->get('paylane_merchant_id');
             $this->data['language']    = strtolower($this->config->get('paylane_interface_lang'));
@@ -54,7 +54,7 @@ class ControllerExtensionPaymentPaylane extends Controller
             } else {
                 $this->template = 'extension/payment/paylane.tpl';
             }
-            
+
             return $this->render();
         }
     }
@@ -68,8 +68,6 @@ class ControllerExtensionPaymentPaylane extends Controller
     {
         $request = $this->request->{strtolower($this->config->get('paylane_redirect_type'))};
 
-        ini_set('display_errors', 'on');
-        error_reporting(E_ALL);
         if (isset($request['description'])) {
             $order_id = (int)$request['description'];
         } else {
